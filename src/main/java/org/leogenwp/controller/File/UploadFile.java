@@ -1,5 +1,7 @@
 package org.leogenwp.controller.File;
 
+import org.leogenwp.model.Event;
+import org.leogenwp.model.File;
 import org.leogenwp.model.User;
 import org.leogenwp.service.UserService;
 
@@ -14,7 +16,6 @@ import javax.servlet.http.Cookie;
 public class UploadFile extends HttpServlet {
     UserService userService = new UserService();
     public void service (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        User user = new User();
         PrintWriter messageWriter = response.getWriter();
 
         Cookie[] cookies = request.getCookies();
@@ -33,21 +34,18 @@ public class UploadFile extends HttpServlet {
             }
         }
 
-        messageWriter.println("<h1>" + request.getParameter("password").isEmpty() + "<h1>");
+        User user = userService.getByLogin(cookieLogin.getValue());
+        if (user != null && user.getPassword().equals(request.getParameter("password"))) {
+            Event event = new Event();
+            File file = new File();
+            file.setName(request.getParameter("fileName"));
+            event.setFile(file);
+            user.addEvent(event);
+            userService.update(user);
 
-        if(request.getParameter("login").isEmpty()||request.getParameter("password").isEmpty()){
-            messageWriter.println("<h1>" + "Login and Password can't be empty" + "<h1>");
+            messageWriter.println("<h1>" + "OK" + "<h1>");
+        } else {
+            messageWriter.println("<h1>" + "Invalid login or password" + "<h1>");
         }
-        else if(request.getParameter("login").equals(userService.getByLogin(request.getParameter("login")))) {
-            messageWriter.println("<h1>" + "This login has been already created" + "<h1>");
-        } else  {
-            user.setName(request.getParameter("name"));
-            user.setLastName(request.getParameter("lastName"));
-            user.setLastName(request.getParameter("login"));
-            user.setLastName(request.getParameter("password"));
-            userService.save(user);
-            messageWriter.println("<h1>" + "User has been created" + "<h1>");
-        }
-
     }
 }

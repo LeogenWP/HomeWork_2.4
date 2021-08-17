@@ -63,5 +63,11 @@ public class Event {
 
     public void setFile(File file) {
         this.file = file;
+        file.setEvent(this);
+    }
+
+    public void removeFile(File file) {
+        this.file = null;
+        file.setEvent(null);
     }
 }

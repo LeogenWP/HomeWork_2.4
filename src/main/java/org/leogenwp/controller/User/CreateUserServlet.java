@@ -19,7 +19,6 @@ public class CreateUserServlet extends HttpServlet {
         PrintWriter messageWriter = response.getWriter();
 
 
-        messageWriter.println("<h1>" + request.getParameter("password").isEmpty() + "<h1>");
 
         if(request.getParameter("login").isEmpty()||request.getParameter("password").isEmpty()){
             messageWriter.println("<h1>" + "Login and Password can't be empty" + "<h1>");
@@ -29,8 +28,8 @@ public class CreateUserServlet extends HttpServlet {
         } else  {
             user.setName(request.getParameter("name"));
             user.setLastName(request.getParameter("lastName"));
-            user.setLastName(request.getParameter("login"));
-            user.setLastName(request.getParameter("password"));
+            user.setLogin(request.getParameter("login"));
+            user.setPassword(request.getParameter("password"));
             userService.save(user);
             messageWriter.println("<h1>" + "User has been created" + "<h1>");
         }

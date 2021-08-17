@@ -37,7 +37,12 @@ public class JavaIOEventRepository implements EventRepository {
     public Event getById(Integer id) {
         Event event = new Event();
         try(Session session = SesFactory.getSession()) {
-            event = session.get(Event.class,id);
+            //event = session.get(Event.class,id);
+            Query query = session.createQuery("select e  FROM Event e left join FETCH e.file WHERE e.id = ?1");
+            query.setParameter(1,id);
+            if(!query.getResultList().isEmpty()){
+                event =(Event) query.getResultList().get(0);
+            };
         } catch (Exception e) {
             e.printStackTrace();
         }
