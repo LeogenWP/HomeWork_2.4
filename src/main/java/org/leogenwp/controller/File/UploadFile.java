@@ -1,23 +1,37 @@
-package org.leogenwp.controller.User;
+package org.leogenwp.controller.File;
 
 import org.leogenwp.model.User;
 import org.leogenwp.service.UserService;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.http.Cookie;
 
-
-public class CreateUserServlet extends HttpServlet {
+public class UploadFile extends HttpServlet {
     UserService userService = new UserService();
     public void service (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = new User();
         PrintWriter messageWriter = response.getWriter();
 
+        Cookie[] cookies = request.getCookies();
+        String login = "login";
+        String password = "password";
+        Cookie cookieLogin = null;
+        Cookie cookiePassword = null;
+        if(cookies !=null) {
+            for(Cookie c: cookies) {
+                if(login.equals(c.getName())) {
+                    cookieLogin = c;
+                }
+                if(password.equals(c.getName())) {
+                    cookiePassword = c;
+                }
+            }
+        }
 
         messageWriter.println("<h1>" + request.getParameter("password").isEmpty() + "<h1>");
 

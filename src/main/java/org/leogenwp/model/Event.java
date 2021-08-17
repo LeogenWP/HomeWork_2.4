@@ -11,8 +11,12 @@ public class Event {
     @Column(name = "id", unique = true, nullable = false)
     private Integer id;
     private String uploaded;
-    @Column(name = "user_id")
-    private Integer userId;
+
+    /*@Column(name = "user_id")
+    private Integer userId;*/
+    @ManyToOne
+    //@JoinColumn(name="user_id")
+    private User user;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "file_id", referencedColumnName = "id")
     private File file;
@@ -37,12 +41,20 @@ public class Event {
         this.uploaded = uploaded;
     }
 
-    public Integer getUserId() {
+   /* public Integer getUserId() {
         return userId;
     }
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }*/
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public File getFile() {

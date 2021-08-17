@@ -23,7 +23,11 @@ public class JavaIOUserRepository implements UserRepository {
 
     @Override
     public List<User> getall() {
-        return null;
+        List<User> users;
+        Session session = SesFactory.getSession();
+        Query query = session.createQuery("SELECT u FROM User u left join FETCH u.events t");
+        users = query.getResultList();
+        return users;
     }
 
     @Override
@@ -43,7 +47,12 @@ public class JavaIOUserRepository implements UserRepository {
     public User getById(Integer id) {
         User user = new User();
         try(Session session = SesFactory.getSession()) {
-            user = (User) session.get(User.class,id);
+            //user = (User) session.get(User.class,id);
+            Query query = session.createQuery("select u  FROM User u left join FETCH u.events WHERE u.id = ?1");
+            query.setParameter(1,id);
+            if(!query.getResultList().isEmpty()){
+                user =(User) query.getResultList().get(0);
+            };
         } catch (Exception e) {
             e.printStackTrace();
         }

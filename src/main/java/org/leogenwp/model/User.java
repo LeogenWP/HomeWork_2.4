@@ -19,7 +19,8 @@ public class User {
     private String login;
     @Column(name = "password")
     private String password;
-    @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
+    //@OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Event> events =new ArrayList<>();
 
     public User() {
@@ -71,5 +72,15 @@ public class User {
 
     public void setEvents(List<Event> events) {
         this.events = events;
+    }
+
+    public void addEvent(Event event) {
+        events.add(event);
+        event.setUser(this);
+    }
+
+    public void removeEvent(Event event) {
+        events.remove(event);
+        event.setUser(null);
     }
 }
