@@ -15,7 +15,7 @@ public class Event {
     /*@Column(name = "user_id")
     private Integer userId;*/
     @ManyToOne
-    //@JoinColumn(name="user_id")
+    @JoinColumn(name="user_id")
     private User user;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "file_id", referencedColumnName = "id")

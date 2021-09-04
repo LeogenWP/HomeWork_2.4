@@ -1,4 +1,4 @@
-package org.leogenwp.collectionUtils;
+package org.leogenwp.Utils;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -7,15 +7,14 @@ import org.leogenwp.model.Event;
 import org.leogenwp.model.File;
 import org.leogenwp.model.User;
 
-public class SesFactory {
+public class HibernateSession {
     private static Configuration conf = new Configuration().configure("hibernate.cfg.xml")
             .addAnnotatedClass(User.class)
             .addAnnotatedClass(File.class)
             .addAnnotatedClass(Event.class);
     private static SessionFactory sessionFactory = conf.buildSessionFactory();
-    private static Session session;
 
     public static Session getSession() {
-        return session = sessionFactory.openSession();
+        return  sessionFactory.openSession();
     }
 }

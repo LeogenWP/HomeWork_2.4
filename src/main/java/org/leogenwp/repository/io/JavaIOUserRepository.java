@@ -5,7 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
-import org.leogenwp.collectionUtils.SesFactory;
+import org.leogenwp.Utils.HibernateSession;
 import org.leogenwp.model.Event;
 import org.leogenwp.model.File;
 import org.leogenwp.model.User;
@@ -24,7 +24,7 @@ public class JavaIOUserRepository implements UserRepository {
     @Override
     public List<User> getall() {
         List<User> users;
-        Session session = SesFactory.getSession();
+        Session session = HibernateSession.getSession();
         Query query = session.createQuery("SELECT u FROM User u left join FETCH u.events t");
         users = query.getResultList();
         return users;
@@ -32,7 +32,7 @@ public class JavaIOUserRepository implements UserRepository {
 
     @Override
     public User save(User user) {
-        try(Session session = SesFactory.getSession()
+        try(Session session = HibernateSession.getSession()
         ) {
             session.beginTransaction();
             session.save(user);
@@ -46,7 +46,7 @@ public class JavaIOUserRepository implements UserRepository {
     @Override
     public User getById(Integer id) {
         User user = new User();
-        try(Session session = SesFactory.getSession()) {
+        try(Session session = HibernateSession.getSession()) {
             //user = (User) session.get(User.class,id);
             Query query = session.createQuery("select u  FROM User u left join FETCH u.events WHERE u.id = ?1");
             query.setParameter(1,id);
@@ -61,7 +61,7 @@ public class JavaIOUserRepository implements UserRepository {
     @Override
     public User getByLogin(String login) {
         User user = new User();
-        try(Session session = SesFactory.getSession()) {
+        try(Session session = HibernateSession.getSession()) {
             Query query = session.createQuery("from User where login = :paramLogin");
             query.setParameter("paramLogin", login);
             List<User> list = query.list();
@@ -76,7 +76,7 @@ public class JavaIOUserRepository implements UserRepository {
 
     @Override
     public User update(User user) {
-        try(Session session = SesFactory.getSession()) {
+        try(Session session = HibernateSession.getSession()) {
             session.beginTransaction();
             session.update(user);
             session.getTransaction().commit();
@@ -88,7 +88,7 @@ public class JavaIOUserRepository implements UserRepository {
 
     @Override
     public void deleteById(Integer id) {
-        try(Session session = SesFactory.getSession()) {
+        try(Session session = HibernateSession.getSession()) {
             session.beginTransaction();
             User user = (User) session.get(User.class,id);
             session.remove(user);

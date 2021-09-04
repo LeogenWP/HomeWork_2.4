@@ -83,4 +83,16 @@ public class User {
         events.remove(event);
         event.setUser(null);
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", events=" + events +
+                '}';
+    }
 }
