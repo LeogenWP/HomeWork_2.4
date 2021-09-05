@@ -38,8 +38,8 @@ public class EventController extends HttpServlet {
         User user = userService.getByLogin(request.getParameter("login"));
         if (user.getLogin() != null && user.getPassword().equals(request.getParameter("password"))) {
 
-            if(request.getParameter("fileId")!= null || !request.getParameter("fileId").isEmpty()) {
-                Event event = eventService.getById(Integer.parseInt(request.getParameter("fileId")));
+            if(request.getParameter("eventId")!= null || !request.getParameter("eventId").isEmpty()) {
+                Event event = eventService.getById(Integer.parseInt(request.getParameter("eventId")));
                 if(event.getId()!= null) {
                     System.out.println("Ok");
                 } else {
@@ -60,8 +60,8 @@ public class EventController extends HttpServlet {
         User user = userService.getByLogin(request.getParameter("login"));
         if (user.getLogin() != null && user.getPassword().equals(request.getParameter("password"))) {
 
-            if(request.getParameter("fileId")!= null || !request.getParameter("fileId").isEmpty()) {
-                eventService.deleteById(Integer.parseInt(request.getParameter("fileId")));
+            if(request.getParameter("eventId")!= null || !request.getParameter("eventId").isEmpty()) {
+                eventService.deleteById(Integer.parseInt(request.getParameter("eventId")));
             }
         } else {
             messageWriter.println("<h1>" + "Invalid login or password" + "<h1>");
