@@ -5,32 +5,4 @@
 <web-app>
     <display-name>Servlets Tutorial</display-name>
 
-    <servlet>
-        <servlet-name>CreateUserServlet</servlet-name>
-        <servlet-class>org.leogenwp.controller.User.CreateUserServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>CreateUserServlet</servlet-name>
-        <url-pattern>/CreateUser</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>Authorization</servlet-name>
-        <servlet-class>org.leogenwp.controller.Security.Authorization</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Authorization</servlet-name>
-        <url-pattern>/authorization</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>UploadUser</servlet-name>
-        <servlet-class>org.leogenwp.controller.File.UploadFile</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>UploadUser</servlet-name>
-        <url-pattern>/uploadFile</url-pattern>
-    </servlet-mapping>
-
-
 </web-app>

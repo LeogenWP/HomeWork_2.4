@@ -62,7 +62,7 @@ public class JavaIOUserRepository implements UserRepository {
     public User getByLogin(String login) {
         User user = new User();
         try(Session session = HibernateSession.getSession()) {
-            Query query = session.createQuery("from User where login = :paramLogin");
+            Query query = session.createQuery("select u  FROM User u left join FETCH u.events where u.login = :paramLogin");
             query.setParameter("paramLogin", login);
             List<User> list = query.list();
             if (list.size() != 0) {

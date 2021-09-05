@@ -10,7 +10,7 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
     private Integer id;
-    private String uploaded;
+    private Date uploaded;
 
     /*@Column(name = "user_id")
     private Integer userId;*/
@@ -33,11 +33,11 @@ public class Event {
         this.id = id;
     }
 
-    public String getUploaded() {
+    public Date getUploaded() {
         return uploaded;
     }
 
-    public void setUploaded(String uploaded) {
+    public void setUploaded(Date uploaded) {
         this.uploaded = uploaded;
     }
 

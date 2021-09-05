@@ -8,12 +8,12 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 CREATE TABLE IF NOT EXISTS `files` (
     `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `name` varchar(255)
+    `adress` varchar(255)
 )ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 
 CREATE TABLE IF NOT EXISTS `events` (
     `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `uploaded` varchar(255),
+    `uploaded` datetime,
     `user_id` int,
     `file_id` int,
     FOREIGN KEY (user_id) REFERENCES users(id),

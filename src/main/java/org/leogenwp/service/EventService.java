@@ -7,6 +7,8 @@ import org.leogenwp.repository.UserRepository;
 import org.leogenwp.repository.io.JavaIOEventRepository;
 import org.leogenwp.repository.io.JavaIOUserRepository;
 
+import java.util.List;
+
 public class EventService {
     EventRepository eventRepository = new JavaIOEventRepository();
     public Event save(Event e) {
@@ -15,6 +17,10 @@ public class EventService {
     public Event getById(Integer id) {
         Event e = eventRepository.getById(id);
         return e;
+    }
+
+    public List<Event> getAll() {
+        return eventRepository.getall();
     }
 
 

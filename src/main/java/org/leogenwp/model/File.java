@@ -9,8 +9,8 @@ public class File {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)
     private Integer id;
-    @Column(name = "name")
-    private String name;
+    @Column(name = "adress")
+    private String adress;
     @OneToOne(mappedBy = "file")
     private Event event;
 
@@ -26,12 +26,12 @@ public class File {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getAdress() {
+        return adress;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAdress(String adress) {
+        this.adress = adress;
     }
 
     public Event getEvent() {
