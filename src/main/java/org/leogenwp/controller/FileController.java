@@ -3,6 +3,8 @@ package org.leogenwp.controller;
 import org.leogenwp.model.Event;
 import org.leogenwp.model.File;
 import org.leogenwp.model.User;
+import org.leogenwp.repository.io.JavaIOFileRepository;
+import org.leogenwp.repository.io.JavaIOUserRepository;
 import org.leogenwp.service.FileService;
 import org.leogenwp.service.UserService;
 
@@ -19,8 +21,8 @@ import java.util.List;
 
 @WebServlet("/file")
 public class FileController extends HttpServlet {
-    FileService fileService = new FileService();
-    UserService userService = new UserService();
+    FileService fileService = new FileService(new JavaIOFileRepository());
+    UserService userService = new UserService(new JavaIOUserRepository());
     User user = new User();
     PrintWriter messageWriter ;
 

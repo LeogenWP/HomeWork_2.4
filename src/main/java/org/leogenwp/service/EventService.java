@@ -10,7 +10,12 @@ import org.leogenwp.repository.io.JavaIOUserRepository;
 import java.util.List;
 
 public class EventService {
-    EventRepository eventRepository = new JavaIOEventRepository();
+    EventRepository eventRepository;
+
+    public EventService(EventRepository eventRepository) {
+        this.eventRepository = eventRepository;
+    }
+
     public Event save(Event e) {
         return eventRepository.save(e);
     }

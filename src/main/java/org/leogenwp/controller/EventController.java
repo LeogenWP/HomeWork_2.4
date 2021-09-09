@@ -2,6 +2,8 @@ package org.leogenwp.controller;
 
 import org.leogenwp.model.Event;
 import org.leogenwp.model.User;
+import org.leogenwp.repository.io.JavaIOEventRepository;
+import org.leogenwp.repository.io.JavaIOUserRepository;
 import org.leogenwp.service.EventService;
 import org.leogenwp.service.UserService;
 
@@ -16,8 +18,8 @@ import java.util.List;
 
 @WebServlet("/event")
 public class EventController extends HttpServlet {
-    EventService eventService = new EventService();
-    UserService userService = new UserService();
+    EventService eventService = new EventService(new JavaIOEventRepository());
+    UserService userService = new UserService(new JavaIOUserRepository());
     User user = new User();
     PrintWriter messageWriter ;
 

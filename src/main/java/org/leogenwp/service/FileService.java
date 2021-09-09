@@ -10,7 +10,13 @@ import java.util.List;
 
 public class FileService {
 
-    FileRepository fileRepository = new JavaIOFileRepository();
+    FileRepository fileRepository ;
+
+
+    public FileService(FileRepository fileRepository) {
+        this.fileRepository = fileRepository;
+    }
+
     public File save(File f) {
         return fileRepository.save(f);
     }

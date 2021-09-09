@@ -7,7 +7,18 @@ import org.leogenwp.repository.io.JavaIOUserRepository;
 import java.util.List;
 
 public class UserService {
-    UserRepository userRepository = new JavaIOUserRepository();
+
+
+
+    UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    public UserService() {
+    }
+
     public User save(User u) {
        return userRepository.save(u);
     }

@@ -1,6 +1,7 @@
 package org.leogenwp.controller;
 
 import org.leogenwp.model.User;
+import org.leogenwp.repository.io.JavaIOUserRepository;
 import org.leogenwp.service.UserService;
 
 import javax.servlet.ServletException;
@@ -14,7 +15,7 @@ import java.util.List;
 
 @WebServlet("/user")
 public class UserController extends HttpServlet {
-    UserService userService = new UserService();
+    UserService userService = new UserService(new JavaIOUserRepository());
     User user = new User();
     PrintWriter messageWriter ;
 
