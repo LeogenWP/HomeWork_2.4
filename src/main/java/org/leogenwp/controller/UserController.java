@@ -15,12 +15,17 @@ import java.util.List;
 
 @WebServlet("/user")
 public class UserController extends HttpServlet {
-    UserService userService = new UserService(new JavaIOUserRepository());
+    UserService userService ;// new UserService(new JavaIOUserRepository());
     User user = new User();
     PrintWriter messageWriter ;
 
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
     public void doPost (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        messageWriter = response.getWriter();
+        response.setContentType("text/html");
+        PrintWriter messageWriter = response.getWriter();
 
         System.out.println(request.getParameter("name"));
         System.out.println(request.getParameter("lastName"));
